@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PaginaController;
@@ -20,8 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::prefix('auth')->group(function(){
+    route::post('/register', [AuthController::class, 'register']);
+    route::post('/login', [AuthController::class, 'login']);
 });
 
 Route::controller(BitacoraController::class)->group(function() {

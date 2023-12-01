@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('bitacora');
             $table->unsignedBigInteger('idUsuario');
+            $table->foreign('idUsuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->date('fecha');
             $table->string('IP');
             $table->string('SO');
