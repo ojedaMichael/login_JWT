@@ -20,12 +20,22 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->userName();
+        $idPersonas =rand(1,10);
+        $idRoles = rand(1,3);
         return [
-            'name' => fake()->name(),
+            'idPersona'=>$idPersonas,
+            'name' => $name,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'fecha'=>date('Y-m-d'),
+            'idRol'=>$idRoles,
+            'fechaCreacion'=>date('Y-m-d'),
+            'fechaModificacion'=>date('Y-m-d'),
+            'usuarioCreacion'=>$name,
+            'usuarioModificacion'=>$name,
         ];
     }
 

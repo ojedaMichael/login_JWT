@@ -17,15 +17,17 @@ class DatabaseSeeder extends Seeder
            $seederPagina = new PaginaSeeder();
            $seederRol = new RolSeeder();
            $seederEnlace = new EnlaceSeeder();
-           $seederUsuario = new UsuarioSeeder();
+           $seedersUser = new UserSeeder();
            $seedersBitacora = new BitacoraSeeder();
+           
             
            $seederPersona->run();
            $seederPagina->run();
            $seederRol->run();
            $seederEnlace->run();
-           $seederUsuario->run();
+           $seedersUser->run();
            $seedersBitacora->run();
+           
         
     }
 }

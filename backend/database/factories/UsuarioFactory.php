@@ -16,15 +16,16 @@ class UsuarioFactory extends Factory
      */
     public function definition(): array
     {
-        $h = ['S','N'];
+        
         $name = fake()->userName();
         $idPersonas =rand(1,10);
         $idRoles = rand(1,3);
         return [
             'idPersona'=>$idPersonas,
             'usuario'=>$name,
-            'clave'=>fake()->numberBetween(),
-            'habilitado'=>$h[rand(0,1)],
+            'password'=>fake()->numberBetween(),
+            'email'=>fake()->email(),
+            
             'fecha'=>date('Y-m-d'),
             'idRol'=>$idRoles,
             'fechaCreacion'=>date('Y-m-d'),
