@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('bitacoras', function (Blueprint $table) {
             $table->id();
             $table->string('bitacora');
-            $table->unsignedBigInteger('idUsuario');
-            $table->foreign('idUsuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('idUsers');
+            $table->foreign('idUsers')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('fecha');
             $table->string('IP');
             $table->string('SO');

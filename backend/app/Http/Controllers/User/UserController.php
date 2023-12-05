@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\usuario;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
-  /**
+     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usuarios = usuario::all();
+        $usuarios = User::all();
 
         return response()->json(compact('usuarios'), 200);
     }
@@ -30,12 +31,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = new usuario();
+        $usuario = new User();
 
         $usuario->idPersona = $request->idPersona;
-        $usuario->usuario = $request->usuario;
-        $usuario->password = $request->password;
-        $usuario->habilitado = $request->habilitado;
+        $usuario->name = $request->usuario;
+        $usuario->email = $request->email;
+        $usuario->password = bcrypt( $request->password);
+        $usuario->habilitado = 1;
         $usuario->fecha = date('y-m-d');
         $usuario->idRol = $request->idRol;
         $usuario->fechaModificacion = date('y-m-d');
@@ -53,7 +55,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        return usuario::find($id);
+        return User::find($id);
     }
 
     /**
@@ -61,18 +63,17 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = usuario::find($id);
+        $user = User::find($id);
 
-        $usuario->idPersona = $request->idPersona;
-        $usuario->usuario = $request->usuario;
-        $usuario->clave = $request->clave;
-        $usuario->habilitado = $request->habilitado;
-        $usuario->fecha = date('y-m-d');
-        $usuario->idRol = $request->idRol;
-        $usuario->fechaModificacion = date('y-m-d');
-        $usuario->usuarioModificacion = $request->usuarioModificacion;
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        $user->habilitado = $request->habilitado;
+        $user->fecha = date('y-m-d');
+       
+        $user->fechaModificacion = date('y-m-d');
         
-        $usuario->save();
+        
+        $user->save();
         return "usuario editado correctamente";
     }
 
@@ -81,7 +82,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = usuario::find($id);
+        $usuario = User::find($id);
         $usuario->delete();
 
         return "usuario eliminado correctamente";

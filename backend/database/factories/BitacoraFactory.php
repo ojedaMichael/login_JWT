@@ -23,7 +23,7 @@ class BitacoraFactory extends Factory
         $numID = rand(1,10);
         return [
             'bitacora'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            'idUsuario'=>$numID,
+            'idUsers'=>$numID,
             'fecha'=>date("Y-m-d H:i:s"),
             'IP'=>fake()->numberBetween(),
             'SO'=>$so[rand(0,2)],
